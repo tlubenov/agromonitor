@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name agromonitor.bg www.agromonitor.bg;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/mapserver/agromonitor/backend/agromonitor.sock;
+    }
+}

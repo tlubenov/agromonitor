@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve agromonitor services
+After=network.target
+
+[Service]
+User=mapserver
+Group=www-data
+WorkingDirectory=/home/mapserver/agromonitor/backend
+Environment="PATH=/usr/bin"
+ExecStart=/usr/bin/gunicorn --workers 3 --bind unix:agromonitor.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
